@@ -82,22 +82,33 @@ return {
     end,
   },
 
-  -- lsp stuff
-  {
-    "mason-org/mason.nvim",
-    cmd = { "Mason", "MasonInstall", "MasonUpdate" },
-    opts = function()
-      return require "nvchad.configs.mason"
-    end,
-  },
+    {
+      -- Main LSP Configuration
+      'neovim/nvim-lspconfig',
+      dependencies = {
+        -- Automatically install LSPs and related tools to stdpath for Neovim
+        -- Mason must be loaded before its dependents so we need to set it up here.
+        -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
 
-  {
-    "neovim/nvim-lspconfig",
-    event = "User FilePost",
-    config = function()
-      require("nvchad.configs.lspconfig").defaults()
-    end,
-  },
+        { 'mason-org/mason.nvim', 
+        opts = function()
+              return require "nvchad.configs.mason"
+        end, 
+        },
+        'mason-org/mason-lspconfig.nvim',
+        {
+          'WhoIsSethDaniel/mason-tool-installer.nvim',
+          opts = {
+            ensure_installed = {
+              -- 'clangd', -- C/C++ LSP
+              'ruff', -- Ruff LSP (Python)
+              'clang-format', -- Formatter for C/C++
+              'stylua',
+            },
+          },
+        },
+      },
+    },
 
   -- load luasnips + cmp related in insert mode only
   {
