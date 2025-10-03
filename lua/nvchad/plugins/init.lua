@@ -2,14 +2,14 @@ return {
   "nvim-lua/plenary.nvim",
 
   {
-    "nvchad/base46",
+    "MohamoudAli12/base46",
     build = function()
       require("base46").load_all_highlights()
     end,
   },
 
   {
-    "nvchad/ui",
+    "MohamoudAli12/ui",
     lazy = false,
     config = function()
       require "nvchad"
@@ -100,7 +100,7 @@ return {
           'WhoIsSethDaniel/mason-tool-installer.nvim',
           opts = {
             ensure_installed = {
-              -- 'clangd', -- C/C++ LSP
+              'clangd', -- C/C++ LSP
               'ruff', -- Ruff LSP (Python)
               'clang-format', -- Formatter for C/C++
               'stylua',

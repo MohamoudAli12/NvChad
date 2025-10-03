@@ -6,7 +6,22 @@ map("i", "<C-h>", "<Left>", { desc = "move left" })
 map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
+--yank to clipboard
+map({ 'n', 'v' }, '<leader>y', [["+y]])
 
+-- Splitting & Resizing
+map('n', '<leader>sv', ':vsplit<CR>', { desc = 'Split window vertically' })
+map('n', '<leader>sh', ':split<CR>', { desc = 'Split window horizontally' })
+map('n', '<C-Up>', ':resize +2<CR>', { desc = 'Increase window height' })
+map('n', '<C-Down>', ':resize -2<CR>', { desc = 'Decrease window height' })
+map('n', '<C-Left>', ':vertical resize -2<CR>', { desc = 'Decrease window width' })
+map('n', '<C-Right>', ':vertical resize +2<CR>', { desc = 'Increase window width' })
+
+-- Move lines up/down
+map('n', '<A-j>', ':m .+1<CR>==', { desc = 'Move line down' })
+map('n', '<A-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+map('v', '<A-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+map('v', '<A-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 map("n", "<C-h>", "<C-w>h", { desc = "switch window left" })
 map("n", "<C-l>", "<C-w>l", { desc = "switch window right" })
 map("n", "<C-j>", "<C-w>j", { desc = "switch window down" })
@@ -16,12 +31,13 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "general clear highlights" })
 
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "general save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "general copy whole file" })
-
-map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
-map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
+-- Y to EOL
+map('n', 'Y', 'y$', { desc = 'Yank to end of line' })
+-- map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "toggle line number" })
+-- map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "toggle relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "toggle nvcheatsheet" })
 
-map({ "n", "x" }, "<leader>fm", function()
+map({ "n", "x" }, "<leader>f", function()
   require("conform").format { lsp_fallback = true }
 end, { desc = "general format file" })
 
@@ -32,11 +48,11 @@ map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP diagnostic locli
 if require("nvconfig").ui.tabufline.enabled then
   map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
 
-  map("n", "<tab>", function()
+  map("n", "<leader>n", function()
     require("nvchad.tabufline").next()
   end, { desc = "buffer goto next" })
 
-  map("n", "<S-tab>", function()
+  map("n", "<leader>N", function()
     require("nvchad.tabufline").prev()
   end, { desc = "buffer goto prev" })
 
@@ -54,7 +70,7 @@ map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" }
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
 
 -- telescope
-map("n", "<leader>fw", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
+map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
 map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 map("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", { desc = "telescope help page" })
 map("n", "<leader>ma", "<cmd>Telescope marks<CR>", { desc = "telescope find marks" })
@@ -80,7 +96,7 @@ map(
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 -- new terminals
-map("n", "<leader>h", function()
+map("n", "<leader>t", function()
   require("nvchad.term").new { pos = "sp" }
 end, { desc = "terminal new horizontal term" })
 
@@ -93,7 +109,7 @@ map({ "n", "t" }, "<A-v>", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
 end, { desc = "terminal toggleable vertical term" })
 
-map({ "n", "t" }, "<A-h>", function()
+map({ "n", "t" }, "<A-t>", function()
   require("nvchad.term").toggle { pos = "sp", id = "htoggleTerm" }
 end, { desc = "terminal toggleable horizontal term" })
 

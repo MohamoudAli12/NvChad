@@ -22,6 +22,10 @@ opt.fillchars = { eob = " " }
 o.ignorecase = true
 o.smartcase = true
 o.mouse = "a"
+o.list = true
+o.nu = true
+o.relativenumber = false
+o.cursorline = true
 
 -- Numbers
 o.number = true
