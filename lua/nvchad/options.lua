@@ -9,7 +9,6 @@ o.splitkeep = "screen"
 
 o.clipboard = "unnamedplus"
 o.cursorline = true
-o.cursorlineopt = "number"
 
 -- Indenting
 o.expandtab = true
@@ -25,7 +24,6 @@ o.mouse = "a"
 o.list = true
 o.nu = true
 o.relativenumber = false
-o.cursorline = true
 
 -- Numbers
 o.number = true

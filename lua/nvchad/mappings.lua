@@ -9,6 +9,7 @@ map("i", "<C-k>", "<Up>", { desc = "move up" })
 --yank to clipboard
 map({ 'n', 'v' }, '<leader>y', [["+y]])
 
+map("i", "jk", "<ESC>")
 -- Splitting & Resizing
 map('n', '<leader>sv', ':vsplit<CR>', { desc = 'Split window vertically' })
 map('n', '<leader>sh', ':split<CR>', { desc = 'Split window horizontally' })
