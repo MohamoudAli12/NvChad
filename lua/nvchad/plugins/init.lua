@@ -105,7 +105,7 @@ return {
             "ruff", -- Ruff LSP (Python)
             "clang-format", -- Formatter for C/C++
             "stylua",
-            "bashls",
+            "rustfmt",
             "rust-analyzer",
           },
         },
