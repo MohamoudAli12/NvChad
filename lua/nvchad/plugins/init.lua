@@ -69,7 +69,7 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
-      formatters_by_ft = { lua = { "stylua" }, python ={'ruff_format'}, c= {'clang-format'} },
+      formatters_by_ft = { lua = { "stylua" }, python = { "ruff_format" }, c = { "clang-format" }, rust ={"rustfmt"} },
     },
   },
 
@@ -82,33 +82,36 @@ return {
     end,
   },
 
-    {
-      -- Main LSP Configuration
-      'neovim/nvim-lspconfig',
-      dependencies = {
-        -- Automatically install LSPs and related tools to stdpath for Neovim
-        -- Mason must be loaded before its dependents so we need to set it up here.
-        -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
+  {
+    -- Main LSP Configuration
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      -- Automatically install LSPs and related tools to stdpath for Neovim
+      -- Mason must be loaded before its dependents so we need to set it up here.
+      -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
 
-        { 'mason-org/mason.nvim', 
+      {
+        "mason-org/mason.nvim",
         opts = function()
-              return require "nvchad.configs.mason"
-        end, 
-        },
-        'mason-org/mason-lspconfig.nvim',
-        {
-          'WhoIsSethDaniel/mason-tool-installer.nvim',
-          opts = {
-            ensure_installed = {
-              'clangd', -- C/C++ LSP
-              'ruff', -- Ruff LSP (Python)
-              'clang-format', -- Formatter for C/C++
-              'stylua',
-            },
+          return require "nvchad.configs.mason"
+        end,
+      },
+      "mason-org/mason-lspconfig.nvim",
+      {
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        opts = {
+          ensure_installed = {
+            "clangd", -- C/C++ LSP
+            "ruff", -- Ruff LSP (Python)
+            "clang-format", -- Formatter for C/C++
+            "stylua",
+            "bashls",
+            "rust-analyzer",
           },
         },
       },
     },
+  },
 
   -- load luasnips + cmp related in insert mode only
   {
@@ -148,8 +151,8 @@ return {
         "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
-        "https://codeberg.org/FelipeLema/cmp-async-path.git"
-      }
+        "https://codeberg.org/FelipeLema/cmp-async-path.git",
+      },
     },
     opts = function()
       return require "nvchad.configs.cmp"

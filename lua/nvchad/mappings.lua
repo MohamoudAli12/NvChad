@@ -7,7 +7,7 @@ map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
 map("i", "<C-k>", "<Up>", { desc = "move up" })
 --yank to clipboard
-map({ 'n', 'v' }, '<leader>y', [["+y]])
+map({ 'n', 'v' }, '<leader>y', {desc = "yank to clipboard"})
 
 map("i", "jk", "<ESC>")
 -- Splitting & Resizing
@@ -53,7 +53,7 @@ if require("nvconfig").ui.tabufline.enabled then
     require("nvchad.tabufline").next()
   end, { desc = "buffer goto next" })
 
-  map("n", "<leader>N", function()
+  map("n", "<leader>p", function()
     require("nvchad.tabufline").prev()
   end, { desc = "buffer goto prev" })
 
@@ -98,7 +98,7 @@ map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
 
 -- new terminals
 map("n", "<leader>t", function()
-  require("nvchad.term").new { pos = "sp" }
+  require("nvchad.term").toggle { pos = "sp" }
 end, { desc = "terminal new horizontal term" })
 
 map("n", "<leader>v", function()
