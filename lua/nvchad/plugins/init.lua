@@ -107,6 +107,7 @@ return {
             "stylua",
             "rustfmt",
             "rust-analyzer",
+            "basedpyright",
           },
         },
       },

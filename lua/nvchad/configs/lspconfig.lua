@@ -93,7 +93,7 @@ M.defaults = function()
 end
 
 
-local servers = { "lua_ls", "ruff", "clangd","rust-analyzer" }
+local servers = { "lua_ls", "ruff", "clangd","rust-analyzer","basedpyright" }
 vim.lsp.enable(servers)
 
 return M
