@@ -69,7 +69,7 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
-      formatters_by_ft = { lua = { "stylua" }, python = { "ruff_format" }, c = { "clang-format" }, rust ={"rustfmt"} },
+      formatters_by_ft = { lua = { "stylua" }, python = { "ruff_format" }, c = { "clang-format" }, rust = { "rustfmt" } },
     },
   },
 
@@ -101,24 +101,13 @@ return {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         opts = {
           ensure_installed = {
-            "clangd", -- C/C++ LSP
-            "ruff", -- Ruff LSP (Python)
+            "clangd",       -- C/C++ LSP
+            "ruff",         -- Ruff LSP (Python)
             "clang-format", -- Formatter for C/C++
             "stylua",
             "rustfmt",
             "rust-analyzer",
             "basedpyright",
-          },
-        },
-      },
-    },
-    opts = {
-      servers = {
-        basedpyright = {
-          settings = {
-            basedpyright = {
-              typeCheckingMode = "standard",
-            },
           },
         },
       },
