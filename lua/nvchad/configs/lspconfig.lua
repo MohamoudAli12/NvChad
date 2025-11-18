@@ -92,16 +92,14 @@ M.defaults = function()
   end
 end
 
-
-local servers = { "lua_ls", "clangd", "rust-analyzer", "basedpyright" }
-vim.lsp.enable(servers)
-
-require("lspconfig").basedpyright.setup {
+vim.lsp.config("basedpyright", {
   settings = {
     basedpyright = {
       typeCheckingMode = "off",
     },
   },
-}
+})
 
+local servers = { "lua_ls", "clangd", "rust-analyzer", "basedpyright" }
+vim.lsp.enable(servers)
 return M
