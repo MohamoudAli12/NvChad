@@ -112,6 +112,17 @@ return {
         },
       },
     },
+    opts = {
+      servers = {
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              typeCheckingMode = "standard",
+            },
+          },
+        },
+      },
+    },
   },
 
   -- load luasnips + cmp related in insert mode only
