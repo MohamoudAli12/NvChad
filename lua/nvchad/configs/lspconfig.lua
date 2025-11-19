@@ -102,8 +102,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     if client.name == 'ruff' then
       -- Disable hover in favor of Pyright
       client.server_capabilities.hoverProvider = false
-      client.server_capabilities.codeActionProvider = false
-
+      client.server_capabilities.diagnosticProvider = false
     end
   end,
   desc = 'LSP: Disable hover capability from Ruff',
@@ -118,6 +117,6 @@ vim.lsp.config("basedpyright", {
   },
 })
 
-local servers = { "lua_ls", "clangd", "rust-analyzer","ruff", "basedpyright" }
+local servers = { "lua_ls", "clangd", "rust-analyzer", "ruff", "basedpyright" }
 vim.lsp.enable(servers)
 return M
