@@ -69,7 +69,7 @@ return {
   {
     "stevearc/conform.nvim",
     opts = {
-      formatters_by_ft = { lua = { "stylua" }, python = { "ruff_format", "ruff_fix" }, c = { "clang-format" }, rust = { "rustfmt" } },
+      formatters_by_ft = { lua = { "stylua" }, python = { "ruff_format", "ruff_fix","ruff_organize_imports" }, c = { "clang-format" }, rust = { "rustfmt" } },
     },
   },
 
