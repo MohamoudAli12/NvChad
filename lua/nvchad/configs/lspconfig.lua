@@ -116,6 +116,6 @@ vim.lsp.config("basedpyright", {
   },
 })
 
-local servers = { "lua_ls", "clangd", "rust-analyzer", "basedpyright" }
+local servers = { "lua_ls", "clangd", "rust-analyzer","ruff", "basedpyright" }
 vim.lsp.enable(servers)
 return M
