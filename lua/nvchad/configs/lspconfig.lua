@@ -91,6 +91,28 @@ M.defaults = function()
     }
   end
 end
+
+
+vim.lsp.config('ruff', {
+  init_options = {
+    settings = {
+      -- Ruff language server settings go here
+      lint = {
+        enable = false,
+      },
+    }
+  }
+})
+
+vim.lsp.config("basedpyright", {
+  settings = {
+    basedpyright = {
+      typeCheckingMode = "standard",
+      disableOrganizeImports = true,
+    },
+  },
+})
+
 local servers = { "lua_ls", "clangd", "rust-analyzer", "ruff", "basedpyright" }
 vim.lsp.enable(servers)
 return M
