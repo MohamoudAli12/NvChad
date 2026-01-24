@@ -98,7 +98,7 @@ vim.lsp.config('ruff', {
     settings = {
       -- Ruff language server settings go here
       lint = {
-        enable = true,
+        enable = false,
       },
     }
   }
@@ -109,11 +109,6 @@ vim.lsp.config("basedpyright", {
     basedpyright = {
       typeCheckingMode = "standard",
       disableOrganizeImports = true,
-    },
-    python = {
-      analysis = {
-        ignore = { '*' },
-      },
     },
   },
 })
