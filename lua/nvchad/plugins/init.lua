@@ -188,5 +188,64 @@ return {
     ---@type render.md.UserConfig
     opts = {},
 },
+
+{
+    "3rd/image.nvim",
+    opts = {
+      backend = "kitty", -- Change to "ueberzug" if using a different terminal
+      integrations = {
+        markdown = {
+          enabled = true,
+          clear_in_insert_mode = false,
+          download_remote_images = true,
+          only_render_image_at_cursor = false,
+          floating_windows = false,
+        },
+      },
+      max_width = 100,
+      max_height = 12,
+      max_height_window_percentage = math.huge,
+      max_width_window_percentage = math.huge,
+      window_overlap_clear_enabled = false,
+      window_overlap_clear_ft_ignore = { "cmp_menu", "cmp_docs", "" },
+    },
+  },
+
+  -- 2. JUPYTER KERNEL CLIENT (molten-nvim)
+  {
+    "benlubas/molten-nvim",
+    version = "^1.0.0",
+    build = ":UpdateRemotePlugins",
+    init = function()
+      -- These global variables MUST be set in init (before the plugin loads)
+      vim.g.molten_image_provider = "image.nvim"
+      vim.g.molten_output_win_max_height = 20
+      vim.g.molten_auto_open_output = false
+      vim.g.molten_wrap_output = true
+      vim.g.molten_virt_text_output = true
+      vim.g.molten_virt_lines_off_by_1 = true
+    end,
+    config = function()
+      -- Keybindings
+      local opts = { silent = true, noremap = true }
+      
+      -- Initialize the kernel (pick python3 or your venv)
+      vim.keymap.set("n", "<leader>mi", ":MoltenInit<CR>", { desc = "Initialize Molten" })
+      
+      -- Execution commands
+      vim.keymap.set("n", "<leader>re", ":MoltenEvaluateLine<CR>", { desc = "Run Current Line" })
+      vim.keymap.set("v", "<leader>re", ":<C-u>MoltenEvaluateVisual<CR>gv", { desc = "Run Selection" })
+      vim.keymap.set("n", "<leader>rd", ":MoltenDelete<CR>", { desc = "Delete Cell" })
+      
+      -- Output management
+      vim.keymap.set("n", "<leader>oh", ":MoltenHideOutput<CR>", { desc = "Hide Output" })
+      vim.keymap.set("n", "<leader>os", ":MoltenShowOutput<CR>", { desc = "Show Output" })
+      vim.keymap.set("n", "<leader>rn", ":MoltenNext<CR>", { desc = "Next Cell" })
+      vim.keymap.set("n", "<leader>rp", ":MoltenPrev<CR>", { desc = "Prev Cell" })
+    end,
+  },
+
+
+
 }
 
